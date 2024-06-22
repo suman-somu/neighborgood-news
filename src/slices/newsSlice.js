@@ -57,26 +57,36 @@ const newsSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchNews.pending, (state) => {
+                console.log('fetchNews.pending')
                 state.status = 'loading';
             })
             .addCase(fetchNews.fulfilled, (state, action) => {
+                console.log('fetchNews.fulfilled')
                 state.status = 'succeeded';
                 state.articles = action.payload.articles;
                 state.totalResults = action.payload.totalResults;
             })
             .addCase(fetchNews.rejected, (state, action) => {
+                console.log('fetchNews.rejected')
+                console.log('action:', action)
+                console.log('action.error:', action.error)
                 state.status = 'failed';
                 state.error = action.error.message;
             })
             .addCase(searchNews.pending, (state) => {
+                console.log('searchNews.pending')
                 state.status = 'loading';
             })
             .addCase(searchNews.fulfilled, (state, action) => {
+                console.log('searchNews.fulfilled')
+                console.log('action:', action)
+                console.log('action.error:', action.error)
                 state.status = 'succeeded';
                 state.articles = action.payload.articles;
                 state.totalResults = action.payload.totalResults;
             })
             .addCase(searchNews.rejected, (state, action) => {
+                console.log('searchNews.rejected')
                 state.status = 'failed';
                 state.error = action.error.message;
             });
